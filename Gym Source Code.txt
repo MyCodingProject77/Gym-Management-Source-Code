@@ -1,0 +1,87 @@
+
+
+
+
+              Add Code
+
+
+              SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=gymdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("insert into gym_tab values(@gym_id,@name,@address)", con);
+
+            cnn.Parameters.AddWithValue("@Gym_Id", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@Name", textBox2.Text);
+
+            cnn.Parameters.AddWithValue("@Address", textBox3.Text);
+
+            
+
+            
+
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Added Successfully", "Add", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+           
+
+           Gym_Load Code
+
+
+           SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=gymdb;Integrated Security=True");
+
+            SqlCommand cnn = new SqlCommand("Select * from gym_tab", con);
+
+            SqlDataAdapter da = new SqlDataAdapter(cnn);
+            DataTable table = new DataTable();
+            da.Fill(table);
+
+            dataGridView1.DataSource = table;
+
+
+
+          Update Code
+
+
+
+          SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=gymdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("update gym_tab set name=@name,address=@address where gym_id=@gym_id", con);
+
+            cnn.Parameters.AddWithValue("@Gym_Id", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@Name", textBox2.Text);
+
+            cnn.Parameters.AddWithValue("@Address", textBox3.Text);
+
+            
+
+            
+
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Updated Successfully", "Update", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+         Delete Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-ADG77QL\SQLEXPRESS;Initial Catalog=gymdb;Integrated Security=True");
+
+
+            con.Open();
+
+            SqlCommand cnn = new SqlCommand("delete gym_tab where gym_id=@gym_id", con);
+
+            cnn.Parameters.AddWithValue("@Gym_Id", int.Parse(textBox1.Text));
+            
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Deleted Successfully", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+       
